@@ -31,10 +31,8 @@ heap_t *heap_insert(heap_t **root, int value)
 			if (!(*root)->left)
 				(*root)->left = new_node;
 			else
-			{
 				(*root)->right = new_node;
-			}
-			
+
 			swap((*root), new_node);
 		}
 		else
@@ -43,23 +41,9 @@ heap_t *heap_insert(heap_t **root, int value)
 			if (!(*root)->left)
 				(*root)->left = new_node;
 			else
-			{
 				(*root)->right = new_node;
-			}
 		}
-		
 	}
-	/*
-	 * // Assuming it's not empty check if the value is greater than root
-	 * // we are checking, if so swap nodes of root and new node where root now
-	 * //
-	 * // becomes the value
-
-	 * // check child nodes exists against the value of the root node and swap
-	 * // first left then right, then repeat if necessary
-	*/
-
-
 	return (new_node);
 }
 /**
