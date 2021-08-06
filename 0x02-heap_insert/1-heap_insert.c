@@ -28,10 +28,26 @@ heap_t *heap_insert(heap_t **root, int value)
 		if ((*root)->n < value)
 		{
 			new_node = binary_tree_node((*root), value);
-			(*root)->left = new_node;
+			if (!(*root)->left)
+				(*root)->left = new_node;
+			else
+			{
+				(*root)->right = new_node;
+			}
+			
 			swap((*root), new_node);
 		}
-
+		else
+		{
+			new_node = binary_tree_node((*root), value);
+			if (!(*root)->left)
+				(*root)->left = new_node;
+			else
+			{
+				(*root)->right = new_node;
+			}
+		}
+		
 	}
 	/*
 	 * // Assuming it's not empty check if the value is greater than root
