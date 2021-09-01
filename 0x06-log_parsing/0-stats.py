@@ -17,8 +17,9 @@ try:
              404: 0,
              405: 0,
              500: 0}
+    lines = 0
     # go through the stdin and get the number of line and the line
-    for place, line in enumerate(sys.stdin):
+    for line in sys.stdin:
         # get log values
         try:
             # get line and split
@@ -32,26 +33,25 @@ try:
 
             # add 1 for the code if it exists
             coded[status_code] += 1
+
+            # counter for the num of lines
+            lines += 1
         except Exception:
             continue
 
         # every 10th line
-        if place % 10 == 0:
+        if lines == 10:
             # print size and the status codes
             print("Full size: {}".format(size))
             for num in range(len(code)):
                 # checks for occurence of status codes
                 if coded[int(code[num])] > 0:
                     print(str(code[num]) + ": " + str(coded[int(code[num])]))
-except KeyboardInterrupt:
-    # if there is a keyboard interrupt
-    # print the last iteration of the logs
-    print("Full size: {}".format(size))
-    for num in range(len(code)):
-        # checks for occurence of status codes
-        if coded[int(code[num])] > 0:
-            print(str(code[num]) + ": " + str(coded[int(code[num])]))
+except Exception:
+    pass
 finally:
+    # if there is a keyboard interrupt or stdin ends
+    # print the last iteration of the logs
     print("Full size: {}".format(size))
     for num in range(len(code)):
         # checks for occurence of status codes
