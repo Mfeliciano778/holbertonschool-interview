@@ -10,13 +10,13 @@ try:
     code = [200, 301, 400, 401, 403, 404, 405, 500]
     # dict of codes and how many times each were called
     coded = {200: 0,
-                301: 0,
-                400: 0,
-                401: 0,
-                403: 0,
-                404: 0,
-                405: 0,
-                500: 0}
+             301: 0,
+             400: 0,
+             401: 0,
+             403: 0,
+             404: 0,
+             405: 0,
+             500: 0}
     # go through the stdin and get the number of line and the line
     for place, line in enumerate(sys.stdin):
         # get log values
