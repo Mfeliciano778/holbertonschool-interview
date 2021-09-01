@@ -42,7 +42,7 @@ try:
         # every 10th line
         if lines == 10:
             # print size and the status codes
-            print("Full size: {}".format(size))
+            print("File size: {}".format(size))
             for num in range(len(code)):
                 # checks for occurence of status codes
                 if coded[int(code[num])] > 0:
@@ -53,7 +53,7 @@ except Exception:
 finally:
     # if there is a keyboard interrupt or stdin ends
     # print the last iteration of the logs
-    print("Full size: {}".format(size))
+    print("File size: {}".format(size))
     for num in range(len(code)):
         # checks for occurence of status codes
         if coded[int(code[num])] > 0:
