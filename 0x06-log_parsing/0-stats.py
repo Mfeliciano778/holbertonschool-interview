@@ -46,7 +46,7 @@ try:
             for num in range(len(code)):
                 # checks for occurence of status codes
                 if coded[int(code[num])] > 0:
-                    print(str(code[num]) + ": " + str(coded[int(code[num])]))
+                    print("{}: {}".format(code[num], coded[int(code[num])]))
             lines = 0
 except Exception:
     pass
