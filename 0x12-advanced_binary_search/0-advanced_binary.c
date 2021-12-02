@@ -46,7 +46,8 @@ int simple_binary(int *array, int left, int right, int value)
 void print_array(int *array, int start, int size)
 {
 	printf("Searching in array: %i", array[start]);
-	for (; start <= size - 1; start++)
+	start += 1;
+	for (; start <= size; start++)
 		printf(", %i", array[start]);
 	printf("\n");
 }
