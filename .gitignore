@@ -127,5 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-0x00-lockboxes/main_0.py
+
+*-main.c
 .gitignore
+0-advanced_binary
