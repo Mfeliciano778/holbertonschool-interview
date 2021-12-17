@@ -1,142 +1,117 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "binary_trees.h"
 
+
 /**
- * extract - moves root to the end for extraction
- * @rt: root node
+ * heap_make - restructure to a heap tree
+ * @node: moving node
  * Return: void
  */
-heap_t *extract(heap_t *rt)
+void heap_make(heap_t *node)
 {
-	heap_t *r = rt->right ? rt->right : NULL, *l = rt->left ? rt->left : NULL;
-	heap_t *s = NULL, *sp = NULL;
-	int swap;
-
-	if (l && r)
-		s = (l->n >= r->n) ? l : r;
-	else if (l || r)
-		s = l ? l : r;
-	else
-		return (rt);
-
-	swap = s->n;
-	s->n = rt->n;
-	rt->n = swap;
-
-	sp = s;
-	s = rt;
-	rt = sp;
-
-	return (extract(rt));
+		if (node->left && node->right && node->left->n > node->n &&
+		node->right->n > node->n)
+		{
+			if (node->right->n > node->left->n)
+			{
+				swap(node, node->right);
+				heap_make(node->right);
+			} else
+			{
+				swap(node, node->left);
+				heap_make(node->left);
+			}
+		}
+		else if (node->right && node->right->n > node->n)
+		{
+			swap(node, node->right);
+			heap_make(node->right);
+		}
+		else if (node->left && node->left->n > node->n)
+		{
+			swap(node, node->left);
+			heap_make(node->left);
+		}
 }
 
 /**
- * remover - removes a node from the bin tree
- * @ptr: is the node to remove
+ * swap - swap parent and child node
+ * @parent: parent node
+ * @child: child node
  * Return: void
  */
-void remover(heap_t *ptr)
+void swap(heap_t *parent, heap_t *child)
 {
-	heap_t *l, *p = ptr->parent ? ptr->parent : NULL;
+	int temp = parent->n;
 
-	if (ptr->parent)
-	{
-		l = p->left ? p->left : NULL;
-		if (l && l == ptr)
-			p->left = NULL;
-		else
-			p->right = NULL;
-	}
-
-	free(ptr);
+	parent->n = child->n;
+	child->n = temp;
 }
 
 /**
- * find_right - finds the next place on the bin tree to remove
- * @root: the root or starting node
- * @depth: the depth of the tree for use
- * @target_depth: the max depth of the bin tree
- * Return: the next node to remove
+ * get_last - Will return the last node in heap tree
+ * @root: root node
+ * @head: original root node
+ * @height: the current height
+ * @max_height: the max height of heap tree
+ * Return: 0 on failure, else the value stored in the root node
  */
-heap_t *find_right(heap_t *root, int depth, int target_depth)
+heap_t *get_last(heap_t *root, heap_t *head, int height, int max_height)
 {
-	heap_t *r = root->right ? root->right : NULL;
-	heap_t *l = root->left ? root->left : NULL, *p = root;
+	heap_t *left, *right;
 
-	if (target_depth == 0)
+	if (height == max_height)
+		/* last node is root */
 		return (root);
-	if (depth == target_depth)
-	{
-		if (r)
-			return (r);
-		else if (l)
-			return (l);
-		return (NULL);
-	}
-	else if (l && r)
-	{
-		p = find_right(r, depth + 1, target_depth);
-		if (p == NULL)
-			p = find_right(l, depth + 1, target_depth);
-	}
-	else
-		return (NULL);
-	return (p);
+	left = get_last(root->left, head, height + 1, max_height);
+	right = get_last(root->right, head, height + 1, max_height);
+	if (right)
+		return (right);
+	if (left)
+		return (left);
+	return (NULL);
 }
 
 /**
- * swaper - swaps two nodes
- * @ptr1: is a node
- * @ptr2: is another node
- * Return: void
+ * get_height - gets the height of given heap tree
+ * @root: root node
+ * Return: 0 on failure, else the value stored in the root node
  */
-void swaper(heap_t *ptr1, heap_t *ptr2)
+int get_height(heap_t *root)
 {
-	heap_t *p1 = ptr1->parent ? ptr1->parent : NULL;
-	heap_t *p2 = ptr2->parent ? ptr2->parent : NULL;
-
-	if (p1)
-	{
-		if (p1->left == ptr1)
-			p1->left = ptr2;
-		else
-			p1->right = ptr2;
-	}
-	if (p2)
-	{
-		if (p2->left == ptr2)
-			p2->left = ptr1;
-		else
-			p2->right = ptr1;
-	}
-	ptr1->parent = p2;
-	ptr2->parent = p1;
+	if (root)
+		return (get_height(root->left) + 1);
+	return (0);
 }
 
 /**
- * heap_extract - extracts the root node out of the binary tree
- * @root: this is the root node
- * Return: the value of the root node extracted
+ * heap_extract - extracts the root node of a Max Binary Heap
+ * @root: root node
+ * Return: 0 on failure, else the value stored in the root node
  */
 int heap_extract(heap_t **root)
 {
-	int hold, depth = 0;
-	heap_t *r = *root, *swap, *ld;
+	heap_t *last_node;
+	int extract;
 
-
-	if (!root || !(*root))
+	if (!*root)
 		return (0);
-	hold = (*root)->n;
-	r = extract(r);
-	for (; (*root)->parent; *root = (*root)->parent)
-		;
-	for (ld = *root; ld->left; ld = ld->left, depth += 1)
-		;
-	swap = find_right(*root, 1, depth);
-	if (r != swap)
-		swaper(swap, r);
-	if (!depth)
-		*root = NULL;
-	remover(r);
+	last_node = get_last(*root, *root, 1, get_height(*root));
+	extract = root[0]->n;
 
-	return (hold);
+	root[0]->n = last_node->n;
+	if (!root[0]->left && !root[0]->right)
+	{
+		free(*root);
+		*root = NULL;
+		return (extract);
+	}
+	else if (last_node->parent->right)
+		last_node->parent->right = NULL;
+	else
+		last_node->parent->left = NULL;
+	free(last_node);
+	heap_make(*root);
+	return (extract);
 }
