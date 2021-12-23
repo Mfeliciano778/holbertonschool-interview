@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
 	free(word1);
 	free(word2);
 	exit(0);
-	return(0);
+	return (0);
 }
 /**
  * print_arr - prints the result array
@@ -55,7 +55,7 @@ void print_arr(int *array, int size)
 	_putchar('\n');
 }
 /**
- * not_easy_multiply - multiplies two int arrays
+ * easy_multiply - multiplies two int arrays
  * @word1: the first array
  * @word2: the second array
  * @len1: the length of the first array
@@ -79,9 +79,9 @@ int *easy_multiply(int *word1, int *word2, int len1, int len2)
 	return (res_array);
 }
 /**
- * easy_convert - converts char array to int array
- * @word: the array
- * @length: the length of the array
+ * buffer - creates buffer array
+ * @length1: the first size
+ * @length2: the second size
  *
  * Return: New char array
  */
@@ -183,7 +183,7 @@ int get_length(char *word)
 
 	for (length = 0; word[length] != 0; length++)
 		;
-	return length;
+	return (length);
 }
 /**
  * easy_exit - exits program with code 98
