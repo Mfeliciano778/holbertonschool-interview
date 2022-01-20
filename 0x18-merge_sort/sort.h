@@ -20,7 +20,7 @@ typedef struct listint_s
 
 void merge_sort(int *array, size_t size);
 void print_array(const int *array, size_t size);
-void mergearrays(int *array, size_t size, size_t mp, int *b);
-void tdmerge(int *array, size_t size, int *b, size_t bsize);
+void mergearrays(int *array, size_t size, size_t mp, int *cpy);
+void tdmerge(int *array, size_t size, int *cpy, size_t cpysize);
 
 #endif

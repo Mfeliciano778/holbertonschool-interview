@@ -24,25 +24,25 @@ void merge_sort(int *array, size_t size)
 * @array: the array unsorted
 * @size: size of the array
 * @b: the second work array
-* @bsize: the size of b
+* @cpysize: the size of b
 */
-void tdmerge(int *array, size_t size, int *b, size_t bsize)
+void tdmerge(int *array, size_t size, int *cpy, size_t cpysize)
 {
 	int midpoint = size / 2;
 
-	(void)bsize;
+	(void)cpysize;
 	if (size <= 1)
 		return;
-	tdmerge(b, midpoint, array, midpoint);
-	tdmerge((b + midpoint), size - midpoint, (array + midpoint), 0);
+	tdmerge(cpy, midpoint, array, midpoint);
+	tdmerge((cpy + midpoint), size - midpoint, (array + midpoint), 0);
 
 	printf("Merging...\n[left]: ");
 	print_array(array, midpoint);
 	printf("[right]: ");
 	print_array((array + midpoint), size - midpoint);
-	mergearrays(array, size, midpoint, b);
+	mergearrays(array, size, midpoint, cpy);
 	printf("[Done]: ");
-	print_array(b, size);
+	print_array(cpy, size);
 }
 
 /**
@@ -53,14 +53,15 @@ void tdmerge(int *array, size_t size, int *b, size_t bsize)
 * @mp:midpoint of the array to split the array into 2
 * @b: work array
 */
-void mergearrays(int *array, size_t size, size_t mp, int *b)
+void mergearrays(int *array, size_t size, size_t mp, int *cpy)
 {
-	unsigned int i, rindex = mp, k = 0;
+	unsigned int i, jindex = mp, k = 0;
+
 	for (i = 0; i < size; i++)
 	{
-		if (k < mp && (rindex >= size || array[k] <= array[rindex]))
-			b[i] = array[k], k++;
+		if (k < mp && (jindex >= size || array[k] <= array[jindex]))
+			cpy[i] = array[k], k++;
 		else
-			b[i] = array[rindex], rindex++;
+			cpy[i] = array[jindex], jindex++;
 	}
 }
