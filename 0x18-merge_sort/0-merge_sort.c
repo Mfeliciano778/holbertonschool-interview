@@ -23,7 +23,7 @@ void merge_sort(int *array, size_t size)
 * Return: void
 * @array: the array unsorted
 * @size: size of the array
-* @b: the second work array
+* @cpy: the second work array
 * @cpysize: the size of b
 */
 void tdmerge(int *array, size_t size, int *cpy, size_t cpysize)
@@ -51,7 +51,7 @@ void tdmerge(int *array, size_t size, int *cpy, size_t cpysize)
 * @array: numbers to get from
 * @size:total size of the array
 * @mp:midpoint of the array to split the array into 2
-* @b: work array
+* @cpy: work array
 */
 void mergearrays(int *array, size_t size, size_t mp, int *cpy)
 {
