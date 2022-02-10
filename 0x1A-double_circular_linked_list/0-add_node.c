@@ -9,33 +9,30 @@
 */
 List *add_node_end(List **list, char *str)
 {
-    // if string is null then return
-    if (str == NULL)
-        return (NULL);
+	if (str == NULL)
+		return (NULL);
 
-    // create a new node
-    List *new_node = malloc(sizeof(List));
-    if (new_node == NULL)
-        return (NULL);
+	List *new_node = malloc(sizeof(List));
 
-    new_node->str = strdup(str);
+	if (new_node == NULL)
+		return (NULL);
 
-    // if the list is empty
-    if (*list == NULL)
-    {
-        // set the next and prev pointers to the new_node
-        new_node->next = new_node->prev = new_node;
-        *list = new_node;
-    } else
-    {
-        /* set the next and prev pointers to the correct nodes */
-        new_node->next = *list;
+	new_node->str = strdup(str);
+
+	if (*list == NULL)
+	{
+		new_node->next = new_node->prev = new_node;
+		*list = new_node;
+	} else
+	{
+		/* set the next and prev pointers to the correct nodes */
+		new_node->next = *list;
 		new_node->prev = (*list)->prev;
 		((*list)->prev)->next = new_node;
 		(*list)->prev = new_node;
-    }
+	}
 
-    return (new_node);
+	return (new_node);
 }
 /**
 * add_node_begin - adds a new node at the beginning of a linked list
@@ -46,31 +43,29 @@ List *add_node_end(List **list, char *str)
 */
 List *add_node_begin(List **list, char *str)
 {
-    if (str == NULL)
-        return (NULL);
+	if (str == NULL)
+		return (NULL);
 
-    // create a new node
-    List *new_node = malloc(sizeof(List));
-    if (new_node == NULL)
-        return (NULL);
+	List *new_node = malloc(sizeof(List));
 
-    new_node->str = strdup(str);
+	if (new_node == NULL)
+		return (NULL);
 
-    // if the list is empty
-    if (*list == NULL)
-    {
-        // set the next and prev pointers to the new_node
-        new_node->next = new_node->prev = new_node;
-        *list = new_node;
-    } else
-    {
-        /* set the next and prev pointers to the correct nodes */
-        new_node->next = *list;
+	new_node->str = strdup(str);
+
+	if (*list == NULL)
+	{
+		new_node->next = new_node->prev = new_node;
+		*list = new_node;
+	} else
+	{
+		/* set the next and prev pointers to the correct nodes */
+		new_node->next = *list;
 		new_node->prev = (*list)->prev;
 		((*list)->prev)->next = new_node;
 		(*list)->prev = new_node;
 		*list = new_node;
-    }
+	}
 
-    return (new_node);
+	return (new_node);
 }
