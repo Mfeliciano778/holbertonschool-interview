@@ -21,6 +21,11 @@ List *add_node_end(List **list, char *str)
 		return (NULL);
 
 	new_node->str = strdup(str);
+	if (new_node->str == NULL)
+	{
+		free(new_node);
+		return NULL;
+	}
 
 	if (*list == NULL)
 	{
@@ -57,6 +62,11 @@ List *add_node_begin(List **list, char *str)
 		return (NULL);
 
 	new_node->str = strdup(str);
+	if (new_node->str == NULL)
+	{
+		free(new_node);
+		return NULL;
+	}
 
 	if (*list == NULL)
 	{
