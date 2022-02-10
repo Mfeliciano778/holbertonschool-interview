@@ -1,4 +1,6 @@
 #include "list.h"
+#include <stdlib.h>
+#include <string.h>
 /**
 * add_node_end - adds a new node at the end of a linked list
 * @list: the head node of list to add to
@@ -8,10 +10,12 @@
 */
 List *add_node_end(List **list, char *str)
 {
+	List *new_node;
+
 	if (str == NULL)
 		return (NULL);
 
-	List *new_node = malloc(sizeof(List));
+	new_node = malloc(sizeof(List));
 
 	if (new_node == NULL)
 		return (NULL);
@@ -42,10 +46,12 @@ List *add_node_end(List **list, char *str)
 */
 List *add_node_begin(List **list, char *str)
 {
+	List *new_node;
+
 	if (str == NULL)
 		return (NULL);
 
-	List *new_node = malloc(sizeof(List));
+	new_node = malloc(sizeof(List));
 
 	if (new_node == NULL)
 		return (NULL);
