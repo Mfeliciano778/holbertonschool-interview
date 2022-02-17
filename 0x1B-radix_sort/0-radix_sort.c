@@ -26,7 +26,7 @@ void radix_sort(int *array, size_t size)
 /**
  * radix_recursive - Sort an array recursively using LSD radix sort
  * @array: Pointer to array to sort
- * @buffer: Pointer to temporary buffer
+ * @buff: Pointer to temporary buffer
  * @size: Number of elements in array and buffer
  * @step: Significant digit to sort by
  *
@@ -37,7 +37,7 @@ void radix_recursive(int *array, int *buff, size_t size, int step)
 	int num;
 	size_t index, bindex = 0, sorted = 1;
 
-	for(num = 0; num < 10; num++)
+	for (num = 0; num < 10; num++)
 	{
 		for (index = 0; index < size; index++)
 		{
