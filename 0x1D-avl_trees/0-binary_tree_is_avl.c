@@ -43,6 +43,8 @@ int binary_tree_is_avl(const binary_tree_t *tree)
 /**
  * is_tree_bst - Checks if a binary tree is a binary search tree
  * @tree: Pointer to root of the tree
+ * @n: n value of the parent-most root
+ * @side: Side of the tree being checked (left - 0, right - 1)
  * Return: 1 if a bst, 0 if not
  */
 int is_tree_bst(const binary_tree_t *tree, int n, int side)
@@ -62,7 +64,8 @@ int is_tree_bst(const binary_tree_t *tree, int n, int side)
 	if (side == 1 && tree->n < n)
 		return (0);
 
-	return (is_tree_bst(tree->left, n, side) && is_tree_bst(tree->right, n, side));
+	return (is_tree_bst(tree->left, n, side) && is_tree_bst(tree->right,
+															n, side));
 }
 /**
  * tree_height - Height of a binary tree
