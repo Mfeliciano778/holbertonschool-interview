@@ -5,8 +5,8 @@ ___
 
 ## Description of the project
 
-This repository is used to keep myself sharp and on my toes. Learning unity there's not many algorithms to learn and dynamic programming to practice. So this repository goes over interview questions and my answers.
-Practicing with coding languages like Python and C, I get the best practice of higher and lower levels of programming.
+This repository is used to keep my programming sharp and learn to use different algorithms and databases. While using unity there's not many algorithms and dynamic programming to practice. So this repository goes over interview questions and gives me a chance to solve them.
+I use coding languages like Python and C to get the best practice of higher and lower levels of programming.
 
 ___
 
