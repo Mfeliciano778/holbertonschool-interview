@@ -10,15 +10,15 @@
 */
 int *find_substring(char const *s, char const **words, int nb_words, int *n)
 {
-    int string_length, *indexs;
+	int string_length, *indexs;
 
-    if (s == NULL || words == NULL || nb_words == 0 || n == NULL)
-        return (NULL);
+	if (s == NULL || words == NULL || nb_words == 0 || n == NULL)
+		return (NULL);
 
-    string_length = strlen(s);
-    indexs = malloc(string_length * sizeof(int));
-    if (indexs == NULL)
-        return (NULL);
+	string_length = strlen(s);
+	indexs = malloc(string_length * sizeof(int));
+	if (indexs == NULL)
+		return (NULL);
 
-    return (indexs);
+	return (indexs);
 }
