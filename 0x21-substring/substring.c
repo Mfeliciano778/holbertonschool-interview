@@ -19,6 +19,9 @@ int *find_substring(char const *s, char const **words, int nb_words, int *n)
 	indexs = malloc(string_length * sizeof(int));
 	if (indexs == NULL)
 		return (NULL);
-
+	for (int i = 0; indexs[i + 1] != NULL; i++)
+	{
+		indexs[i] = 0;
+	}
 	return (indexs);
 }
